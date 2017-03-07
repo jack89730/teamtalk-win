@@ -1,6 +1,6 @@
 /******************************************************************************* 
  *  @file      UIIMEdit.cpp 2014\8\19 13:20:13 $
- *  @author    ¥Û∑<dafo@mogujie.com>
+ *  @author    Â§ß‰Ωõ<dafo@mogujie.com>
  *  @brief     
  ******************************************************************************/
 
@@ -182,23 +182,23 @@ BOOL UIIMEdit::_SaveFile(IN HBITMAP hbitmap, OUT CString& strFilePath)
 
 HBITMAP UIIMEdit::_LoadAnImage(IN CString filePath)
 {
-	HANDLE hFile = CreateFile(filePath, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL); //¥”÷∏∂®µƒ¬∑æ∂szImagePath÷–∂¡»°Œƒº˛æ‰±˙
-	DWORD dwFileSize = GetFileSize(hFile, NULL); //ªÒµ√Õº∆¨Œƒº˛µƒ¥Û–°£¨”√¿¥∑÷≈‰»´æ÷ƒ⁄¥Ê
-	HGLOBAL hImageMemory = GlobalAlloc(GMEM_MOVEABLE, dwFileSize); //∏¯Õº∆¨∑÷≈‰»´æ÷ƒ⁄¥Ê
-	void *pImageMemory = GlobalLock(hImageMemory); //À¯∂®ƒ⁄¥Ê
-	DWORD dwReadedSize; //±£¥Ê µº ∂¡»°µƒŒƒº˛¥Û–°
-	ReadFile(hFile, pImageMemory, dwFileSize, &dwReadedSize, NULL); //∂¡»°Õº∆¨µΩ»´æ÷ƒ⁄¥Êµ±÷–
-	GlobalUnlock(hImageMemory); //Ω‚À¯ƒ⁄¥Ê
-	CloseHandle(hFile); //πÿ±’Œƒº˛æ‰±˙
+	HANDLE hFile = CreateFile(filePath, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL); //‰ªéÊåáÂÆöÁöÑË∑ØÂæÑszImagePath‰∏≠ËØªÂèñÊñá‰ª∂Âè•ÊüÑ
+	DWORD dwFileSize = GetFileSize(hFile, NULL); //Ëé∑ÂæóÂõæÁâáÊñá‰ª∂ÁöÑÂ§ßÂ∞èÔºåÁî®Êù•ÂàÜÈÖçÂÖ®Â±ÄÂÜÖÂ≠ò
+	HGLOBAL hImageMemory = GlobalAlloc(GMEM_MOVEABLE, dwFileSize); //ÁªôÂõæÁâáÂàÜÈÖçÂÖ®Â±ÄÂÜÖÂ≠ò
+	void *pImageMemory = GlobalLock(hImageMemory); //ÈîÅÂÆöÂÜÖÂ≠ò
+	DWORD dwReadedSize; //‰øùÂ≠òÂÆûÈôÖËØªÂèñÁöÑÊñá‰ª∂Â§ßÂ∞è
+	ReadFile(hFile, pImageMemory, dwFileSize, &dwReadedSize, NULL); //ËØªÂèñÂõæÁâáÂà∞ÂÖ®Â±ÄÂÜÖÂ≠òÂΩì‰∏≠
+	GlobalUnlock(hImageMemory); //Ëß£ÈîÅÂÜÖÂ≠ò
+	CloseHandle(hFile); //ÂÖ≥Èó≠Êñá‰ª∂Âè•ÊüÑ
 
 	HRESULT hr = NULL;
-	IStream *pIStream = NULL;//¥¥Ω®“ª∏ˆIStreamΩ”ø⁄÷∏’Î£¨”√¿¥±£¥ÊÕº∆¨¡˜
-	IPicture *pIPicture = NULL;//¥¥Ω®“ª∏ˆIPictureΩ”ø⁄÷∏’Î£¨±Ì æÕº∆¨∂‘œÛ
+	IStream *pIStream = NULL;//ÂàõÂª∫‰∏Ä‰∏™IStreamÊé•Âè£ÊåáÈíàÔºåÁî®Êù•‰øùÂ≠òÂõæÁâáÊµÅ
+	IPicture *pIPicture = NULL;//ÂàõÂª∫‰∏Ä‰∏™IPictureÊé•Âè£ÊåáÈíàÔºåË°®Á§∫ÂõæÁâáÂØπË±°
 
-	hr = CreateStreamOnHGlobal(hImageMemory, false, &pIStream); //”√»´æ÷ƒ⁄¥Ê≥ı πªØIStreamΩ”ø⁄÷∏’Î
+	hr = CreateStreamOnHGlobal(hImageMemory, false, &pIStream); //Áî®ÂÖ®Â±ÄÂÜÖÂ≠òÂàù‰ΩøÂåñIStreamÊé•Âè£ÊåáÈíà
 	ASSERT(SUCCEEDED(hr));
 
-	hr = OleLoadPicture(pIStream, 0, false, IID_IPicture, (LPVOID*)&(pIPicture));//”√OleLoadPictureªÒµ√IPictureΩ”ø⁄÷∏’Î
+	hr = OleLoadPicture(pIStream, 0, false, IID_IPicture, (LPVOID*)&(pIPicture));//Áî®OleLoadPictureËé∑ÂæóIPictureÊé•Âè£ÊåáÈíà
 	ASSERT(SUCCEEDED(hr));
 
 	HBITMAP hB = NULL;
@@ -208,9 +208,9 @@ HBITMAP UIIMEdit::_LoadAnImage(IN CString filePath)
 	HBITMAP hBB = (HBITMAP)CopyImage(hB, IMAGE_BITMAP, 0, 0,
 		LR_COPYRETURNORG);
 
-	GlobalFree(hImageMemory); // Õ∑≈»´æ÷ƒ⁄¥Ê
-	pIStream->Release(); // Õ∑≈pIStream
-	pIPicture->Release(); // Õ∑≈pIPictur
+	GlobalFree(hImageMemory); //ÈáäÊîæÂÖ®Â±ÄÂÜÖÂ≠ò
+	pIStream->Release(); //ÈáäÊîæpIStream
+	pIPicture->Release(); //ÈáäÊîæpIPictur
 	return hBB;
 }
 
@@ -470,7 +470,7 @@ LRESULT UIIMEdit::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& 
 		{
 			_ImEditPaste();
 		}
-		else if (VK_RETURN == wParam)//ªÿ≥µ
+		else if (VK_RETURN == wParam)//ÂõûËΩ¶
 		{
 			module::TTConfig* pTTConfig = module::getSysConfigModule()->getSystemConfig();
 			BOOL bWantCtrlEnter = (pTTConfig->sysBaseFlag & module::BASE_FLAG_SENDIMG_BY_CTRLENTER);
@@ -479,8 +479,8 @@ LRESULT UIIMEdit::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& 
 	}
 	else if (uMsg == WM_KILLFOCUS)
 	{
-		//removed by kuaidao 2015-03-05,’‚∂Œª∞ª·µº÷¬Ωπµ„÷Æº‰«–ªª”–Œ Ã‚
-		////fix bug,µ±«∂»ÎWindowsøÿº˛ ±£¨»Áπ˚±µƒwindowsøÿº˛£®»Á«∂»ÎµƒIE£¨À¸ «∏√¥∞ø⁄µƒ“ª∏ˆ◊”¥∞ø⁄£©µ√µΩFocusµƒ ±∫Ú£¨◊‘º∫µƒΩπµ„≤¢√ª”–»•µÙ£¨‘Ï≥…œ¬¥Œ≤ªƒ‹‘Ÿ ‰»Î
+		//removed by kuaidao 2015-03-05,ËøôÊÆµËØù‰ºöÂØºËá¥ÁÑ¶ÁÇπ‰πãÈó¥ÂàáÊç¢ÊúâÈóÆÈ¢ò
+		////fix bug,ÂΩìÂµåÂÖ•WindowsÊéß‰ª∂Êó∂ÔºåÂ¶ÇÊûúÂà´ÁöÑwindowsÊéß‰ª∂ÔºàÂ¶ÇÂµåÂÖ•ÁöÑIEÔºåÂÆÉÊòØËØ•Á™óÂè£ÁöÑ‰∏Ä‰∏™Â≠êÁ™óÂè£ÔºâÂæóÂà∞FocusÁöÑÊó∂ÂÄôÔºåËá™Â∑±ÁöÑÁÑ¶ÁÇπÂπ∂Ê≤°ÊúâÂéªÊéâÔºåÈÄ†Êàê‰∏ãÊ¨°‰∏çËÉΩÂÜçËæìÂÖ•
 		//https://code.google.com/p/duilib/issues/detail?id=102
 		//if (m_bFocused && m_pManager
 		//	&& m_pManager->GetFocus() == this)
@@ -528,17 +528,17 @@ BOOL UIIMEdit::GetContent(OUT MixedMsg& mixMsg)
 		return FALSE;
 	}
 	UInt32 nImageCount = pRichEditOle->GetObjectCount();
-	if (nImageCount == 0)//¥øŒƒ◊÷
+	if (nImageCount == 0)//Á∫ØÊñáÂ≠ó
 	{
 		CString strContent = mixMsg.m_strTextData;
 		strContent.Trim();
 		if (strContent.IsEmpty())
 		{
-			LOG__(DEBG, _T("After trimed,is empty msg"));//»’÷æ∏…»≈
+			LOG__(DEBG, _T("After trimed,is empty msg"));//Êó•ÂøóÂπ≤Êâ∞
 			return FALSE;
 		}
 	}
-	else//ÕºŒƒªÏ≈≈
+	else//ÂõæÊñáÊ∑∑Êéí
 	{
 		CString strEmotionFilesDir = module::getMiscModule()->getEmotionFilesDir();
 		int nPosAdd = 0;
@@ -557,7 +557,7 @@ BOOL UIIMEdit::GetContent(OUT MixedMsg& mixMsg)
 				int nPos = strFullPath.Find(strEmotionFilesDir);
 				if (-1 != nPos)
 				{
-					// «±Ì«È£¨≤ª”√…œ¥´Õº∆¨
+					//ÊòØË°®ÊÉÖÔºå‰∏çÁî®‰∏ä‰º†ÂõæÁâá
 					int nLen = picData.strLocalPicPath.GetLength();
 					CString fileName = strFullPath.Mid(strEmotionFilesDir.GetLength(), nLen - strEmotionFilesDir.GetLength() + 1);
 					CString fileID;
@@ -567,7 +567,8 @@ BOOL UIIMEdit::GetContent(OUT MixedMsg& mixMsg)
 					}
 					mixMsg.m_strTextData.Insert(nPosAdd + picData.nPos, fileID);
 					mixMsg.m_strTextData.Delete(nPosAdd + picData.nPos + fileID.GetLength(), 1);
-					nPosAdd += picData.nPos + fileID.GetLength();
+					//nPosAdd += picData.nPos + fileID.GetLength();
+					nPosAdd += fileID.GetLength() - 1;
 				}
 				else
 				{
